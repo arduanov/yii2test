@@ -1,0 +1,21 @@
+{
+  "name": "arduanov/yii2test",
+  "description": "Yii2test",
+  "authors": [
+    {
+      "name": "Arduanov Marsel",
+      "email": "arduanov@gmail.com"
+    }
+  ],
+  "scripts": {
+    "post-root-package-install": [
+      "./bin/install_db.sh",
+      "php ./bin/db.console migrations:migrate"
+    ]
+  },
+  "require": {
+  },
+  "require-dev": {
+    "codeception/codeception": "~2.1.0"
+  }
+}
