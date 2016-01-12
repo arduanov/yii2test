@@ -6,6 +6,7 @@ use tests\codeception\_pages\HomePage;
 
 $I = new AcceptanceTester($scenario);
 HomePage::openBy($I);
+$I->see('My Company');
 $cached_date = trim($I->grabTextFrom('#date'));
 
 $I->wantTo('ensure that cache works');
