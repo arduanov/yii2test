@@ -7,12 +7,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 	# Create a forwarded port mapping which allows access to a specific port
 	# within the machine from a port on the host machine. In the example below,
 	# accessing "localhost:8080" will access port 80 on the guest machine.
-	config.vm.network :forwarded_port, guest: 8000, host: 8000
+#	config.vm.network :forwarded_port, guest: 8000, host: 8000
 
 	# Create a private network, which allows host-only access to the machine
 	# using a specific IP.
 	config.vm.network :private_network, ip: "192.168.44.26"
-	config.vm.hostname = "yii2test"
+	config.vm.hostname = "yii2test.dev"
 
 	# speedup filesystem
 	config.vm.synced_folder "./", "/var/www/", :mount_options => ['nolock,vers=3,udp,noatime,actimeo=1'], :export_options => ['async,insecure,no_subtree_check,no_acl,no_root_squash'], :nfs => true
