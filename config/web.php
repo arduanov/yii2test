@@ -13,6 +13,9 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'feedback/all' => 'feedback/all',
+                'feedback' => 'feedback/form',
+                'feedback/<id:\d+>' => 'feedback/view',
             ],
         ],
 

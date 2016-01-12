@@ -22,7 +22,8 @@
     "php": ">=5.4.0",
     "yiisoft/yii2": ">=2.0.5",
     "yiisoft/yii2-bootstrap": "*",
-    "yiisoft/yii2-swiftmailer": "*"
+    "yiisoft/yii2-swiftmailer": "*",
+    "vova07/yii2-imperavi-widget": "1.2.10"
   },
   "require-dev": {
     "codeception/codeception": "~2.1.5",
