@@ -9,8 +9,7 @@ services:
     - mysql
 
 before_script:
-    - mysql -e 'create database yii2_basic_tests; use mysql; update user set password=PASSWORD("root") where User='root';
-'
+    - mysql -e 'create database yii2_basic_tests; use mysql; update user set password=PASSWORD("root") where User='root';'
 
 matrix:
     fast_finish: true
