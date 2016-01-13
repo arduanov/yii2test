@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# DEBIAN_FRONTEND=noninteractive
+DEBIAN_FRONTEND=noninteractive
 
 apt-get update
 timedatectl set-timezone Europe/Moscow
@@ -8,7 +8,10 @@ apt-get install -yqq git mc;
 ##
 # MySql
 ##
-apt-get install -yqq mysql5-server
+sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
+sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
+
+apt-get install -yqq mysql-server
 
 echo 'create database test' | mysql -uroot -proot
 echo 'create database yii2_basic_tests' | mysql -uroot -proot
