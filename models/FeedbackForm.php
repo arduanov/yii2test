@@ -12,8 +12,6 @@ use yii\helpers\FileHelper;
  */
 class FeedbackForm extends Model
 {
-//    public $theme;
-//    public $email;
     public $subject;
     public $body;
     public $verifyCode;
@@ -31,7 +29,7 @@ class FeedbackForm extends Model
             // name, email, subject and body are required
             [['subject', 'body'], 'required'],
             // verifyCode needs to be entered correctly
-            ['verifyCode', 'captcha'],
+            [['verifyCode'], 'captcha', 'captchaAction' => 'feedback/captcha'],
             ['subject', 'validateSubject'],
             [['file'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, gif, pdf',
                 'checkExtensionByMimeType' => false, 'mimeTypes' => 'image/jpeg, image/png, image/gif, application/pdf'],
@@ -62,35 +60,8 @@ class FeedbackForm extends Model
 
         return [
             'name' => $this->file->baseName . '.' . $this->file->extension,
-            'mime' => $this->file->extension,
+            'mime' => $this->file->type,
             'size' => $this->file->size
         ];
-    }
-
-    /**
-     * Sends an email to the specified email address using the information collected by this model.
-     * @param  string $email the target email address
-     * @return boolean whether the model passes validation
-     */
-    public function send()
-    {
-        if ($this->validate()) {
-            $feedback = new Feedback();
-            $feedback->load($this->toArray());
-
-            if ($feedback->save()) {
-                return $feedback->id;
-            }
-            return false;
-//            Yii::$app->mailer->compose()
-//                ->setTo($email)
-//                ->setFrom([$this->email => $this->theme])
-//                ->setSubject($this->subject)
-//                ->setTextBody($this->body)
-//                ->send();
-//
-//            return true;
-        }
-        return false;
     }
 }

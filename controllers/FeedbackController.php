@@ -3,14 +3,12 @@
 namespace app\controllers;
 
 use Yii;
-use yii\filters\AccessControl;
 use yii\web\Controller;
-use yii\filters\VerbFilter;
-use app\models\LoginForm;
 use app\models\FeedbackForm;
 use app\models\Feedback;
 use yii\web\NotFoundHttpException;
 use yii\web\UploadedFile;
+use yii\data\ActiveDataProvider;
 
 class FeedbackController extends Controller
 {
@@ -19,9 +17,6 @@ class FeedbackController extends Controller
     public function actions()
     {
         return [
-            'error' => [
-                'class' => 'yii\web\ErrorAction',
-            ],
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
@@ -69,25 +64,21 @@ class FeedbackController extends Controller
             throw new NotFoundHttpException('Feedback not found');
         }
         return $this->render('view', [
-            'feedback' => $feedback,
+            'model' => $feedback,
         ]);
     }
-//
-//    public function actionContact()
-//    {
-//        $model = new ContactForm();
-//        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-//            Yii::$app->session->setFlash('contactFormSubmitted');
-//
-//            return $this->refresh();
-//        }
-//        return $this->render('contact', [
-//            'model' => $model,
-//        ]);
-//    }
-//
-//    public function actionAbout()
-//    {
-//        return $this->render('about');
-//    }
+
+    public function actionAll()
+    {
+        $dataProvider = new ActiveDataProvider([
+            'query' => Feedback::find(),
+            'pagination' => [
+                'pageSize' => 3,
+            ],
+        ]);
+        return $this->render('list', [
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
 }
