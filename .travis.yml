@@ -20,4 +20,4 @@ install:
     - travis_retry composer install --no-interaction --prefer-source
 
 script:
-    - cd tests && php ../vendor/bin/codecept run functional
+    - cd tests && php ./codeception/bin/yii migrate --interactive=0 && php ../vendor/bin/codecept run functional
