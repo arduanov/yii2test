@@ -9,7 +9,7 @@ services:
     - mysql
 
 before_install:
-    - mysql -e 'create database yii2_basic_tests; use mysql; update user set password=PASSWORD("root") where User="root";'
+    - mysql -e "create database yii2_basic_tests; USE mysql;UPDATE user SET password=PASSWORD('root') WHERE user='root';FLUSH PRIVILEGES;"
 
 matrix:
     fast_finish: true
