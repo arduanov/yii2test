@@ -11,16 +11,8 @@ apt-get install -yqq git mc;
 apt-get install -yqq mysql5-server
 
 echo 'create database test' | mysql -uroot -proot
+echo 'create database yii2_basic_tests' | mysql -uroot -proot
 echo "use mysql; update user set host='%' where user='root' and host='127.0.0.1';flush privileges;" | mysql -uroot -proot
-##
-# доступ к базе для всех по паролю
-##
-
-#echo "host all  all    0.0.0.0/0  md5" >> /etc/postgresql/9.4/main/pg_hba.conf
-#sed -i "s/^listen_addresses='\*'//" /etc/postgresql/9.4/main/postgresql.conf
-#echo "listen_addresses='*'" >> /etc/postgresql/9.4/main/postgresql.conf
-#service postgresql restart;
-
 
 echo Installing PHP...
 
