@@ -40,7 +40,7 @@ class FeedbackForm extends Model
     public function validateSubject($attribute, $params)
     {
         if (!in_array($this->$attribute, ['technical', 'support', 'other'])) {
-            $this->addError($attribute, 'Theme incorrect.');
+            $this->addError($attribute, 'Subject incorrect.');
         }
     }
 
@@ -50,7 +50,10 @@ class FeedbackForm extends Model
     public function attributeLabels()
     {
         return [
-            'verifyCode' => 'Verification Code',
+            'subject' => 'Тема',
+            'body' => 'Обращение',
+            'file' => 'Файл',
+            'verifyCode' => 'Код',
         ];
     }
 
